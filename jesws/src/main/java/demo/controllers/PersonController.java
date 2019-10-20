@@ -37,14 +37,15 @@ public class PersonController {
     }
 
     //@PutMapping("/")
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT, produces = "application/json")
-    public void update(@RequestBody Person person) {
-        repository.update(person.id,person.firstName,person.lastName,person.email,person.active);
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = "application/json")
+    public void update(@PathVariable Integer id,@RequestBody Person person) {
+        repository.update(person.id,person.firstName,person.lastName,person.email,true);
     }
 
     //@DeleteMapping("/")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "application/json")
-    public void delete(Integer id) {
+    public void delete(@PathVariable Integer id) {
+        log.info("Delete id:{}"+id);
         repository.delete(id);
     }
 
